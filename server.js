@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var middleware = require('./middleware.js');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.use(middleware.logger);
 
 app.get('/about',middleware.requireAuthentication ,function (req, res){
@@ -10,5 +10,5 @@ app.get('/about',middleware.requireAuthentication ,function (req, res){
 
 app.use(express.static(__dirname+'/public'));//expose an entire folder
 app.listen(PORT, function (){ //the function is called when the server starts
- console.log('Server is started at port'+ PORT);
+ console.log('Server is started at port '+ PORT);
 });
